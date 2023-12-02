@@ -1,4 +1,4 @@
-name: users
+name: blank
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - name: Build the data and create local changes
         uses: actions/setup-python@v1
         with:
