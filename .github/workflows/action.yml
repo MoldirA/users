@@ -1,14 +1,15 @@
 name: users
+
 on:
   push:
     branches:
       - master
   schedule:
     - cron: "0 0 1 * *"
-
+    
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@master
       - name: Build the data and create local changes
@@ -22,9 +23,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit --allow-empty -m "Auto-update of the data package" -a || echo "No changes to commit"
+          git commit --allow-empty -m "Auto-update of the data package" -a
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.gh }}
-
